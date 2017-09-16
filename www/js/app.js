@@ -83,15 +83,28 @@ angular.module('starter', ['ionic', 'ngCordova'])
           ['Maroubra Beach', -33.950198, 151.259302, 1],
           ['Zurich',47.3768866,8.541694,6],
           ['Zurich Technopark',47.389161,8.5150677,7],
-          ['Zurich Flughafen',47.4582165,8.5554755,8]
+          ['Zurich Flughafen',47.4582165,8.5554755,8],
+          ['Zurich BachserMärt Forum',47.382426,8.529462,6],
+          ['FIFA World Football Museum',47.362692, 8.531596,7],
         ];
 
         var marker, i;
 
-        for (i = 0; i < locations.length; i++) {
+        var icon = {
+          url: "../css/4.png",
+          anchor: new google.maps.Point(25,50),
+          scaledSize: new google.maps.Size(50, 50)
+        }
+
+        for (i = 0; i < locations.length ; i++) {
+          if (i > 3) {
+            icon.url = "../css/5.png"
+          }
+          
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
+            map: map,
+            icon: icon
           });
           var infoWindowContent = "<h4>" + locations[i][0] + "</h4>";
 
