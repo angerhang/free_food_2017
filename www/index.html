@@ -18,6 +18,20 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAJ32sieEjCY4nHhWTTHH79umpxbRQo3hY",
+        authDomain: "freefood-1bed5.firebaseapp.com",
+        databaseURL: "https://freefood-1bed5.firebaseio.com",
+        projectId: "freefood-1bed5",
+        storageBucket: "",
+        messagingSenderId: "244682341939"
+      };
+      firebase.initializeApp(config);
+    </script>
   </head>
   <body ng-app="starter">
 
