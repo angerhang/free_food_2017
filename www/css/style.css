@@ -306,11 +306,6 @@ textarea.about-me{
   border: 4px solid white;
 }
 
-
-.tinder-actionsheet .action-sheet-group:first-child{
-  background: #ccccc !important;
-  border-radius: 2px;
-}
 .tinder-actionsheet .action-sheet-group:last-child{
   background: #ff6961 !important;
   color: white !important;

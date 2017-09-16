@@ -3,8 +3,9 @@
     "version": "1.1.1",
     "description": "An Ionic project",
     "dependencies": {
-        "cordova-plugin-geolocation": "^2.4.3",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-googlemaps": "^2.0.8",
+        "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
         "gulp": "^3.5.6",
         "gulp-concat": "^2.2.0",
         "gulp-minify-css": "^0.3.0",
@@ -28,9 +29,18 @@
     ],
     "cordovaPlatforms": [],
     "cordova": {
+        "platforms": [
+            "ios"
+        ],
         "plugins": {
-            "cordova-plugin-googlemaps": {},
-            "cordova-plugin-geolocation": {}
+            "cordova-plugin-googlemaps": {
+                "API_KEY_FOR_ANDROID": "AIzaSyCjP38obhMEw-OtTvFCJH1JFfOW2N4jU1M",
+                "API_KEY_FOR_IOS": "AIzaSyCKRzVWYbb6wHkgzqQmc4c-NH6wkXtTDk8",
+                "API_KEY_FOR_JS": "AIzaSyAmFN7wJzvC8k_zI5y_geATqI5tn5e5720",
+                "LOCATION_WHEN_IN_USE_DESCRIPTION": "Show your location on the map",
+                "LOCATION_ALWAYS_USAGE_DESCRIPTION": "Trace your location on the map"
+            },
+            "cordova-plugin-geolocation": {}            
         }
     }
 }

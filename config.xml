@@ -17,6 +17,12 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
-    <plugin name="cordova-plugin-googlemaps" spec="^2.0.8" />
-    <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
+    <engine name="ios" spec="^4.4.0" />
+    <plugin name="cordova-plugin-googlemaps" spec="^2.0.8">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCjP38obhMEw-OtTvFCJH1JFfOW2N4jU1M" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyCKRzVWYbb6wHkgzqQmc4c-NH6wkXtTDk8" />
+        <variable name="API_KEY_FOR_JS" value="AIzaSyAmFN7wJzvC8k_zI5y_geATqI5tn5e5720" />
+        <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Show your location on the map" />
+        <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="Trace your location on the map" />
+    </plugin>
 </widget>
