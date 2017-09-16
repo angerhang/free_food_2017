@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var typescript = require('gulp-tsc');
 
 var paths = {
   sass: ['./scss/**/*.scss']

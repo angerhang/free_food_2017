@@ -120,29 +120,107 @@ angular.module('starter', ['ionic', 'ngCordova'])
           ['Cronulla Beach', -34.028249, 151.157507, 3],
           ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
           ['Maroubra Beach', -33.950198, 151.259302, 1],
-          ['Zurich',47.3768866,8.541694,6],
-          ['Zurich Technopark',47.389161,8.5150677,7],
-          ['Zurich Flughafen',47.4582165,8.5554755,8]
+          ['Zurich', 47.3768866,8.541694,6],
+          ['Zurich Technopark', 47.389161,8.5150677,7],
+          ['Zurich Flughafen', 47.4582165,8.5554755,8],
+          ['Zurich BachserMärt Forum', 47.382426,8.529462,6],
+          ['FIFA World Football Museum', 47.362692, 8.531596,7],
         ];
 
         var marker, i;
 
-        for (i = 0; i < locations.length; i++) {
+        var pinColor = "FE7569";
+        var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+            new google.maps.Size(21, 34),
+            new google.maps.Point(0,0),
+            new google.maps.Point(10, 34));
+
+        for (i = 0; i < locations.length ; i++) {
+          if (i > 5 && i < 8) {
+            pinColor = "e841f4";
+          } else if (i >= 8) {
+            pinColor = "30e563";
+          }
+
+          pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+          new google.maps.Size(21, 34),
+          new google.maps.Point(0,0),
+          new google.maps.Point(10, 34));
+
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
+            map: map,
+            icon: pinImage
           });
-          var infoWindowContent = "<h4>" + locations[i][0] + "</h4>";
+
+          var infoWindowContent = '<div id="iw-container">' + 
+          '<div class="iw-title">' +  locations[i][0]  +' </div>' +
+          '<div class="iw-content">' +
+            '<div class="iw-subTitle">History</div>' +
+            '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+            '<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
+            '<div class="iw-subTitle">Contacts</div>' +
+            '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
+            '<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
+          '</div>' +
+          '<div class="iw-bottom-gradient"></div>' +
+          '</div>';
 
           var infowindow = new google.maps.InfoWindow({
             content: infoWindowContent
           });
+
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              infowindow.setContent(locations[i][0]);
               infowindow.open(map, marker);
             }
           })(marker, i));
+          
+          /*
+            * The google.maps.event.addListener() event waits for
+            * the creation of the infowindow HTML structure 'domready'
+            * and before the opening of the infowindow defined styles
+            * are applied.
+            */
+            google.maps.event.addListener(infowindow, 'domready', function() {
+              
+                // Reference to the DIV which receives the contents of the infowindow using jQuery
+                var iwOuter = $('.gm-style-iw');
+              
+                /* The DIV we want to change is above the .gm-style-iw DIV.
+                  * So, we use jQuery and create a iwBackground variable,
+                  * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+                  */
+                var iwBackground = iwOuter.prev();
+              
+                // Remove the background shadow DIV
+                iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+              
+                // Remove the white background DIV
+                iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+                // Taking advantage of the already established reference to
+                // div .gm-style-iw with iwOuter variable.
+                // You must set a new variable iwCloseBtn.
+                // Using the .next() method of JQuery you reference the following div to .gm-style-iw.
+                // Is this div that groups the close button elements.
+                var iwCloseBtn = iwOuter.next();
+
+                // Apply the desired effect to the close button
+                iwCloseBtn.css({
+                  opacity: '1', // by default the close button has an opacity of 0.7
+                  right: '42px', top: '4px', // button repositioning
+                  border: '7px solid #48b5e9', // increasing button border and new color
+                  'border-radius': '13px', // circular effect
+                  'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+                  });
+
+                // The API automatically applies 0.7 opacity to the button after the mouseout event.
+                // This function reverses this event to the desired value.
+                iwCloseBtn.mouseout(function(){
+                  $(this).css({opacity: '1'});
+                });
+              });
         }
 
         enableMap();
