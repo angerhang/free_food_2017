@@ -101,9 +101,9 @@ textarea.about-me{
 }
 
 .header-logo{
-  margin-top: 4px;
-/*  height: 10px !important;
-  width: 100px;*/
+  margin-top: 10px;
+  height: 20px !important;
+  width: 100px;
 }
 .gotham-bold{
   font-family: 'gotham-bold';
