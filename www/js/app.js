@@ -20,6 +20,45 @@ angular.module('starter', ['ionic', 'ngCordova'])
   })
 })
 
+
+
+.controller('AddFoodCtrl', function($scope, $ionicPopup){
+	$scope.addFood = function(){
+		var confirmPopup = $ionicPopup.confirm({
+			title: '',
+      templateUrl:'templates/addFood.html',
+			button: [{
+			  text: 'Publish',
+			  type: 'button-block button-outline button-stable',
+			  onTap: function(e) {
+				  $scope.showAlert();
+			  }
+			}]
+		});
+		confirmPopup.then(function(res){
+			if(res){
+				
+			}else{
+				
+			}
+		});
+	};
+  
+  // permissions 
+	$scope.showAlert = function() {
+		var alertPopup = $ionicPopup.alert({
+			title: 'we would like yo access',
+			template: '<i class="ion-android-contacts"></i> Contact <br/> <i class="ion-android-locate"></i> Location',
+			okType: 'button-block button-outline button-stable',
+			
+		});
+		alertPopup.then(function(res) {
+			console.log(45);
+		});
+	};
+  
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
