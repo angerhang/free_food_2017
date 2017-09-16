@@ -114,17 +114,74 @@ angular.module('starter', ['ionic', 'ngCordova'])
             icon: pinImage
           });
 
-          var infoWindowContent = "<h4>" + locations[i][0] + "</h4>";
+          var infoWindowContent = '<div id="iw-container">' + 
+          '<div class="iw-title">' +  locations[i][0]  +' </div>' +
+          '<div class="iw-content">' +
+            '<div class="iw-subTitle">History</div>' +
+            '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+            '<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
+            '<div class="iw-subTitle">Contacts</div>' +
+            '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
+            '<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
+          '</div>' +
+          '<div class="iw-bottom-gradient"></div>' +
+          '</div>';
 
           var infowindow = new google.maps.InfoWindow({
             content: infoWindowContent
           });
+
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              infowindow.setContent(locations[i][0]);
               infowindow.open(map, marker);
             }
           })(marker, i));
+          
+          /*
+            * The google.maps.event.addListener() event waits for
+            * the creation of the infowindow HTML structure 'domready'
+            * and before the opening of the infowindow defined styles
+            * are applied.
+            */
+            google.maps.event.addListener(infowindow, 'domready', function() {
+              
+                // Reference to the DIV which receives the contents of the infowindow using jQuery
+                var iwOuter = $('.gm-style-iw');
+              
+                /* The DIV we want to change is above the .gm-style-iw DIV.
+                  * So, we use jQuery and create a iwBackground variable,
+                  * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+                  */
+                var iwBackground = iwOuter.prev();
+              
+                // Remove the background shadow DIV
+                iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+              
+                // Remove the white background DIV
+                iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+                // Taking advantage of the already established reference to
+                // div .gm-style-iw with iwOuter variable.
+                // You must set a new variable iwCloseBtn.
+                // Using the .next() method of JQuery you reference the following div to .gm-style-iw.
+                // Is this div that groups the close button elements.
+                var iwCloseBtn = iwOuter.next();
+
+                // Apply the desired effect to the close button
+                iwCloseBtn.css({
+                  opacity: '1', // by default the close button has an opacity of 0.7
+                  right: '42px', top: '4px', // button repositioning
+                  border: '7px solid #48b5e9', // increasing button border and new color
+                  'border-radius': '13px', // circular effect
+                  'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+                  });
+
+                // The API automatically applies 0.7 opacity to the button after the mouseout event.
+                // This function reverses this event to the desired value.
+                iwCloseBtn.mouseout(function(){
+                  $(this).css({opacity: '1'});
+                });
+              });
         }
 
         enableMap();
