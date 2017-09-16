@@ -186,6 +186,11 @@ textarea.about-me{
 .color-darkgray{
   color: #4d4f53 !important;
 }
+
+.color-food{
+  color:rgb(111, 171, 255) !important;
+}
+
 .color-pastel-blue {
   color: #779ECB !important;
 }
@@ -199,7 +204,6 @@ textarea.about-me{
 .bg-color-gray {
   background-color: #F7F7F7 !important;
 }
-
 
 .border-color-gray {
   color: black !important;
