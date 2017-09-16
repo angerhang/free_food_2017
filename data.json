@@ -1,0 +1,80 @@
+{
+  "scores": [
+    {
+      "label": "fruit",
+      "score": 100
+    },
+    {
+      "label": "vegetable",
+      "score": 100
+    },
+    {
+      "label": "natural foods",
+      "score": 80
+    },
+    {
+      "label": "superfood",
+      "score": 80
+    },
+    {
+      "label": "junk food",
+      "score": 10
+    },
+    {
+      "label": "french fries",
+      "score": 20
+    },
+    {
+      "label": "cola",
+      "score": 20
+    },
+    {
+      "label": "coca cola",
+      "score": 20
+    },
+    {
+      "label": "hamburger",
+      "score": 20
+    },
+    {
+      "label": "cheeseburger",
+      "score": 20
+    },
+    {
+      "label": "fast food",
+      "score": 20
+    },
+    {
+      "label": "fried food",
+      "score": 20
+    },
+    {
+      "label": "sandwich",
+      "score": 50
+    },
+    {
+      "label": "baked goods",
+      "score": 40
+    },
+    {
+      "label": "juice",
+      "score": 40
+    },
+    {
+      "label": "drink",
+      "score": 30
+    },
+    {
+      "label": "beer",
+      "score": 100
+    },
+    {
+      "label": "coffee",
+      "score": 50
+    },
+    {
+      "label": "macchiato",
+      "score": 60
+    }
+  ]
+}

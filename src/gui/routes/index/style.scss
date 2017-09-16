@@ -1,0 +1,55 @@
+.preview_image {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes load{0%{stroke-dashoffset:0}}
+.scoreCircle {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  &>div {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    color: #48B7E2;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight:100;
+    margin: 2rem;
+    &:before {
+      content: attr(data-name);
+      position: absolute;
+      width: 100%;
+      bottom: -2rem;
+      font-weight:400;
+    }
+    &:after {
+      content: attr(data-percent);
+      position: absolute;
+      width: 100%;
+      top: 1.6rem;
+      left: 0;
+      font-size: 2rem;
+      text-align: center;
+    }
+  }
+  svg {
+    width: 10rem;
+    height: 10rem;
+    &:nth-child(2) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: rotate(-90deg);
+    }
+    &:nth-child(2) path {
+      fill: none;
+      stroke-width: 25;
+      stroke-dasharray: 629;
+      stroke: #fff;
+      opacity:.9;
+      animation: load 10s;
+    }
+  }
+}
