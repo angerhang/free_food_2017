@@ -81,31 +81,39 @@ angular.module('starter', ['ionic', 'ngCordova'])
           ['Cronulla Beach', -34.028249, 151.157507, 3],
           ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
           ['Maroubra Beach', -33.950198, 151.259302, 1],
-          ['Zurich',47.3768866,8.541694,6],
-          ['Zurich Technopark',47.389161,8.5150677,7],
-          ['Zurich Flughafen',47.4582165,8.5554755,8],
-          ['Zurich BachserMärt Forum',47.382426,8.529462,6],
-          ['FIFA World Football Museum',47.362692, 8.531596,7],
+          ['Zurich', 47.3768866,8.541694,6],
+          ['Zurich Technopark', 47.389161,8.5150677,7],
+          ['Zurich Flughafen', 47.4582165,8.5554755,8],
+          ['Zurich BachserMärt Forum', 47.382426,8.529462,6],
+          ['FIFA World Football Museum', 47.362692, 8.531596,7],
         ];
 
         var marker, i;
 
-        var icon = {
-          url: "../css/4.png",
-          anchor: new google.maps.Point(25,50),
-          scaledSize: new google.maps.Size(50, 50)
-        }
+        var pinColor = "FE7569";
+        var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+            new google.maps.Size(21, 34),
+            new google.maps.Point(0,0),
+            new google.maps.Point(10, 34));
 
         for (i = 0; i < locations.length ; i++) {
-          if (i > 3) {
-            icon.url = "../css/5.png"
+          if (i > 5 && i < 8) {
+            pinColor = "e841f4";
+          } else if (i >= 8) {
+            pinColor = "30e563";
           }
-          
+
+          pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+          new google.maps.Size(21, 34),
+          new google.maps.Point(0,0),
+          new google.maps.Point(10, 34));
+
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
             map: map,
-            icon: icon
+            icon: pinImage
           });
+
           var infoWindowContent = "<h4>" + locations[i][0] + "</h4>";
 
           var infowindow = new google.maps.InfoWindow({
