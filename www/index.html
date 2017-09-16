@@ -15,6 +15,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
+    <script src="lib/ionic-ratings/dist/ionic-ratings.min.js"></script>
 
     <!-- alternatively you can use the Google CDN -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script>
@@ -38,13 +39,19 @@
     </script>
   </head>
 
-  <body ng-app="starter" ng-controller="MyController">
+  <body ng-app="starter" >
     <ion-pane>
 
       <ion-header-bar align-title="center" class="bar-positive">
-          
+          <div ng-controller="MyController">
         <button class="button button-grey" icon-start ng-click="openModal()"> + </button>
+      </div>
         <h1 class="title"><img class="title-image" src="img/freefood_logo.png" width="123" height="30" style="margin-top: 5px" /></h1>
+        <div ng-controller="ProfileCtrl">
+            <ion-nav-buttons side="right">
+        <button class="button button-grey" icon-start ng-click="openModal()"> Profile </button>
+      </ion-nav-buttons>
+      </div>
       </ion-header-bar>
 
       <ion-nav-view></ion-nav-view>
