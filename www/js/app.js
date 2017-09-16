@@ -33,6 +33,22 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
 })
 
+.factory('Markers', function($http) {
+
+  var markers = [{"id":"1","name":"Marker One","lat":"47.3901766","lng":"8.5128191"},{"id":"2","name":"zurich flughafen","lat":"47.4501395","lng":"8.5613664"}];
+
+  return {
+    getMarkers: function(){
+
+      // return $http.get("http://localhost/markers.php").then(function(response){
+      //     markers = response;
+      //     return markers;
+      // });
+      return markers;
+    }
+  }
+
+})
 
 .factory('GoogleMaps', function($cordovaGeolocation, $ionicLoading, $rootScope, $cordovaNetwork, Markers, ConnectivityMonitor){
 
