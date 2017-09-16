@@ -27,8 +27,13 @@
           <div class="text-center padding" style="margin-top:22px;">
             <h3>Ben</h3>
             <p class="color-gray">Food lover and HachZurich 2017 Participant :D </p>
-          </div>
+          </div>               
 
+          <div ng-controller="RatingCtrl" class="text-center padding">          
+              <rating ng-model="rating.rate" max="rating.max"></rating>              
+          </div>
+          <rating ng-model="rating.rate" max="rating.max">   </rating>                
+          
           <ion-list class="text-center uppercase">
             <ion-item class="color-pastel-blue" style="top: 30px;" ng-click="showSettings()">
               Settings

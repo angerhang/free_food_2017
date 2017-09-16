@@ -61,40 +61,12 @@ angular.module('starter', ['ionic',
 
       // Each tab has its own nav history stack:
 
-      .state('tab.dash', {
-        url: '/dash',
-        views: {
-          'tab-dash': {
-            templateUrl: 'templates/tab-dash.html',
-            controller: 'DashCtrl'
-          }
-        }
-      })
-      .state('tab.dash-match', {
-        url: '/dash/:matchId',
-        views: {
-          'tab-dash': {
-            templateUrl: 'templates/tab-dash-match.html',
-            controller: 'MatchCtrl'
-          }
-        }
-      })
      .state('tab.maps', {
         url: '/maps',
         views: {
           'tab-maps': {
             templateUrl: 'templates/tab-maps.html',
             controller: 'MapCtrl'
-          }
-        }
-      })
-
-      .state('tab.account', {
-        url: '/account',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl'
           }
         }
       });

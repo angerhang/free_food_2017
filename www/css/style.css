@@ -301,6 +301,17 @@ textarea.about-me{
     border-radius: 50%;
     border: 7px solid white;
 }
+/* Ratings
+*/
+ul.rating li {
+  display: inline;
+  border: 0px;
+  background: none;
+  padding: 5px 10px;
+}
+ul.rating li i {
+  font-size: 30px;
+}
 
 .profile-container .profile-image:active {
   border: 4px solid white;
