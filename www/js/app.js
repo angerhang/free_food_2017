@@ -19,16 +19,15 @@ angular.module('starter', ['ionic',
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      if(window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(true);
-
       }
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
-    });
+      GoogleMaps.init();
+    })
   })
   .config(function ($provide, $ionicConfigProvider, $compileProvider) {
     $ionicConfigProvider.tabs.position('bottom');
@@ -80,7 +79,7 @@ angular.module('starter', ['ionic',
           }
         }
       })
-      .state('tab.maps', {
+     .state('tab.maps', {
         url: '/maps',
         views: {
           'tab-maps': {
@@ -104,43 +103,114 @@ angular.module('starter', ['ionic',
     $urlRouterProvider.otherwise('/tab/dash');
 
   })
-  .controller('MapCtrl', function ($scope, $state, $cordovaGeolocation) {
-    var options = {timeout: 10000, enableHighAccuracy: true};
 
-    $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+  .factory('Markers', function($http) {
 
-      var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var markers = [];
 
-      var mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
+    return {
+      getMarkers: function(){
 
-      $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-      //Wait until the map is loaded
-      google.maps.event.addListenerOnce($scope.map, 'idle', function () {
-
-        var marker = new google.maps.Marker({
-          map: $scope.map,
-          animation: google.maps.Animation.DROP,
-          position: latLng
+        return $http.get("http://example.com/markers.php").then(function(response){
+          markers = response;
+          return markers;
         });
 
-        var infoWindow = new google.maps.InfoWindow({
-          content: "Here I am!"
+      }
+    }
+
+  })
+
+  .factory('GoogleMaps', function($cordovaGeolocation, Markers){
+
+    var apiKey = false;
+    var map = null;
+
+    function initMap(){
+
+      var options = {timeout: 10000, enableHighAccuracy: true};
+
+      $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+
+        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+        var mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        //Wait until the map is loaded
+        google.maps.event.addListenerOnce(map, 'idle', function(){
+
+          //Load the markers
+          loadMarkers();
+
         });
 
-        google.maps.event.addListener(marker, 'click', function () {
-          infoWindow.open($scope.map, marker);
-        });
+      }, function(error){
+        console.log("Could not get location");
+
+        //Load the markers
+        loadMarkers();
+      });
+
+    }
+
+    function loadMarkers(){
+
+      //Get all of the markers from our Markers factory
+      Markers.getMarkers().then(function(markers){
+
+        console.log("Markers: ", markers);
+
+        var records = markers.data.result;
+
+        for (var i = 0; i < records.length; i++) {
+
+          var record = records[i];
+          var markerPos = new google.maps.LatLng(record.lat, record.lng);
+
+          // Add the markerto the map
+          var marker = new google.maps.Marker({
+            map: map,
+            animation: google.maps.Animation.DROP,
+            position: markerPos
+          });
+
+          var infoWindowContent = "<h4>" + record.name + "</h4>";
+
+          addInfoWindow(marker, infoWindowContent, record);
+
+        }
 
       });
 
-    }, function (error) {
-      console.log("Could not get location");
-    });
-  });
+    }
 
+    function addInfoWindow(marker, message, record) {
+
+      var infoWindow = new google.maps.InfoWindow({
+        content: message
+      });
+
+      google.maps.event.addListener(marker, 'click', function () {
+        infoWindow.open(map, marker);
+      });
+
+    }
+
+    return {
+      init: function(){
+        initMap();
+      }
+    }
+
+  })
+
+  .controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
+
+  });
 
