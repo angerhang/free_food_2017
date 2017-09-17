@@ -217,18 +217,27 @@ angular.module('starter', ['ionic', 'ngCordova'])
             icon: pinImage
           });
 
-          var infoWindowContent = '<div id="iw-container">' + 
-          '<div class="iw-title">' +  locations[i][0]  +' </div>' +
-          '<div class="iw-content">' +
-            '<div class="iw-subTitle">History</div>' +
-            '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
-            '<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
-            '<div class="iw-subTitle">Contacts</div>' +
-            '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
-            '<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
-          '</div>' +
-          '<div class="iw-bottom-gradient"></div>' +
-          '</div>';
+          /*
+          title: event name 
+
+          */
+          function createWindowContent(name, event, location, time, food) {
+            return '<div id="iw-container">' + 
+            '<div class="iw-title">' + location  + '  Health Rating:' + '10' + ' </div>' +
+            '<div class="iw-content">' +
+              '<div class="iw-subTitle">Name</div>' + name +
+              '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+              '<div class="iw-subTitle">Location</div>' + location +
+              '<p> asjdlfhalskdjf laksjdfklasjdf lkasjf alksjf jf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksj </p>' +              
+              '<p> Health rating </p>' +
+              '<div class="iw-subTitle">Time</div>' + time +
+              '<div class="iw-subTitle">Time</div>' + food + 
+            '</div>' +
+            '<div class="iw-bottom-gradient"></div>' +
+            '</div>';
+          }
+
+          var infoWindowContent = createWindowContent('hi', 'event', 'location', 'time', 'food');
 
           var infowindow = new google.maps.InfoWindow({
             content: infoWindowContent
@@ -236,6 +245,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
+              infowindow.setContent(createWindowContent('hi', 'event',  locations[i][0]), 'time', 'food');
               infowindow.open(map, marker);
             }
           })(marker, i));
