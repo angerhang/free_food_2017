@@ -25,7 +25,7 @@ export default class Index extends Component {
             <div>
                 <div class="jumbotron" style="background-color: #48B7E2; color: #ffffff;">
                    <div class="container">
-                        <h1 class="display-3">Rank Calculator</h1>
+                        <h1 class="display-3">Smart Health Assistance</h1>
                     </div>
                   <button type="button" class="btn btn-primary btn-lg" onClick={this.handleUpload}
                           style="background-color: #092768;"><i class="fa fa-file-image-o"></i> Calculate
