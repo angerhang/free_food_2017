@@ -34,10 +34,10 @@ angular.module('starter', ['ionic', 'ngCordova'])
         $scope.modal.show();
      };
 
-     $scope.closeModal = function(sername, event, location, duration, num_peope) {
+     $scope.closeModal = function(username, event, location, duration, num_peope) {
         $scope.modal.hide();
-        console.log(username);
         console.log(event);
+
      };
 
      //Cleanup the modal when we're done with it!
@@ -156,19 +156,17 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
 })
 
-.factory('CalculateRank', function($http){
+.factory('CalculateRank', function(){
   return {
 
     calculate: function()
   {
+    let xhr = new XMLHttpRequest();
+    var input = {"username":"Katniss Everdeen","Location": "Zurich", "image":"IMG_6178"};
 
-    this.firbasedata.labels=response.labels;
-    this.firbasedata.score=score;
-    this.firbasedata.location= location;
-
-    xhr.open("POST", "https://freefood-1bed5.firebaseio.com/frfooddata.json", true);
+    xhr.open("POST", "https://freefood-1bed5.firebaseio.com/inputData.json", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(this.firbasedata
+    xhr.send(JSON.stringify(input
     ));
   }
 }
