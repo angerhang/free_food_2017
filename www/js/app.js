@@ -212,16 +212,12 @@ angular.module('starter', ['ionic', 'ngCordova'])
         console.log(name);
 
         var locations = [
-          ['Bondi Beach', -33.890542, 151.274856, 4],
-          ['Coogee Beach', -33.923036, 151.259052, 5],
-          ['Cronulla Beach', -34.028249, 151.157507, 3],
-          ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-          ['Maroubra Beach', -33.950198, 151.259302, 1],
-          ['Zurich', 47.3768866,8.541694,6],
-          ['Zurich Technopark', 47.389161,8.5150677,7],
-          ['Zurich Flughafen', 47.4582165,8.5554755,8],
-          ['Zurich BachserMärt Forum', 47.382426,8.529462,6],
-          ['FIFA World Football Museum', 47.362692, 8.531596,7],
+          ['Zurich HBF', 47.3768866,8.541694, 10, '2017-10-17 00-13:00', 7, "Zürich Hauptbahnhof is the largest railway station in Switzerland. Zürich is a major railway hub, with services to and from across Switzerland and neighbouring European countries such as Germany, Italy, Austria and France."],
+          ['Zurich Technopark', 47.389161,8.5150677, 10, '2017-9-17 8:00-10:00', 5, "Technopark Zürich is a technopark based in the municipality of Zürich in the Canton of Zürich in Switzerland."],
+          ['Zurich Flughafen', 47.4582165,8.5554755, 30, '2017-9-19 18:00-19:00', 5, "Zürich Airport, also known as Kloten Airport, is the largest international airport of Switzerland and the principal hub of Swiss International Air Lines."],
+          ['Zurich BachserMärt Forum', 47.382426,8.529462, 20, '2017-9-19 18:00-19:00', 9, "Food security and sovereignty, good and healthy food for all the people of the world, to achieve this needs a new understanding of food. We understand nutrition as common property and commons. A future food system is to be characterized by local, sustainable networks. The partners along the supply chain do not work profit-oriented, act in a participatory way and assume the equivalence of all parties involved. The local network is based on common cultural, ecological and social values. An open dialogical culture allows the integration of individual initiatives and works to balance the different interests of the actors along the food cycle."],
+          ['FIFA World Football Museum', 47.362692, 8.531596, 10, '2017-9-20 18:00-19:00', 8, "The FIFA World Football Museum is an association football museum owned and operated by FIFA. The museum is located in Zürich, Switzerland, across town from the FIFA headquarters. It opened on 28 February 2016"],
+          ['Zürich Yoga For All', 47.362441, 8.550294, 10, '2017-9-19 15:00-19:00', 10, "'Yoga For All' aims to provide space and time for people to come together to enjoy yoga and other social activities. Everyone is welcome from yoga fanatics to those who are just curious. Yoga people are the friendlies."],          
         ];
 
         var marker, i;
@@ -233,9 +229,9 @@ angular.module('starter', ['ionic', 'ngCordova'])
             new google.maps.Point(10, 34));
 
         for (i = 0; i < locations.length ; i++) {
-          if (i > 5 && i < 8) {
+          if (i > 2 && i < 5) {
             pinColor = "e841f4";
-          } else if (i >= 8) {
+          } else if (i >= 5) {
             pinColor = "30e563";
           }
 
@@ -254,22 +250,21 @@ angular.module('starter', ['ionic', 'ngCordova'])
           title: event name
 
           */
-          function createWindowContent(name, event, location, time, food) {
+          function createWindowContent(event, time, food, desp, i, happy) {
             return '<div id="iw-container">' +
-            '<div class="iw-title">'  + '  Health Rating:' + '10' + ' </div>' +
+            '<div class="iw-title">'  + '  Health Rating:' + happy + ' </div>' +
             '<div class="iw-content">' +
-              '<div class="iw-subTitle">Name</div>' + name +
-              '<div class="iw-subTitle">Location</div>' + location +
-              '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
-              '<p>HackZurich is Europe’s largest and most renowned Hackathon and unites 550 tech talents from over 50 countries to create a web, mobile, or desktop application within 40 hours.</p>' +
-              '<div class="iw-subTitle">Time</div>' + time +
-              '<div class="iw-subTitle">Food portions left</div>' + food +
+              '<div class="iw-subTitle">' + event + '</div>' +
+              '<img src="../img/location' + i + '.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+              '<p> ' +  desp + "</p>" +
+              '<div class="iw-subTitle">Time </div> ' + time + '\n' +
+              '<div class="iw-subTitle">Food portions left ' + food + '</div>' +
             '</div>' +
             '<div class="iw-bottom-gradient"></div>' +
             '</div>';
           }
 
-          var infoWindowContent = createWindowContent('hi', 'event', 'location', 'time', 'food');
+          var infoWindowContent = createWindowContent('hi', 'event', 'location', 'time', 'food', 'desp', 4, 3);
 
           var infowindow = new google.maps.InfoWindow({
             content: infoWindowContent
@@ -277,7 +272,8 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              infowindow.setContent(createWindowContent('hi', 'event',  locations[i][0]), 'time', 'food');
+              infowindow.setContent(createWindowContent(locations[i][0], locations[i][4],  locations[i][3], locations[i][6], i, 
+                                     locations[i][5]));
               infowindow.open(map, marker);
             }
           })(marker, i));
