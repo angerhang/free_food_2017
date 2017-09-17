@@ -171,7 +171,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
     let xhr = new XMLHttpRequest();
     var input = {"username":"Katniss Everdeen","Location": "Zurich", "image":"IMG_6178"};
 
-    xhr.open("POST", "https://freefood-1bed5.firebaseio.com/inputData.json", true);
+    xhr.open("POST", "https://freefood-1bed5.firebaseio.com/freefoodInfo.json", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(input
     ));
