@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngCordova', 'ionic-ratings'])
+angular.module('starter', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform, GoogleMaps) {
   $ionicPlatform.ready(function() {
@@ -19,25 +19,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic-ratings'])
     GoogleMaps.init();
   })
 })
-
-.controller('RatingsCtrl', ['$scope', function($scope) {
-  
-     $scope.ratingsObject = {
-       iconOn: 'ion-ios-star',    //Optional 
-       iconOff: 'ion-ios-star-outline',   //Optional 
-       rating:  2, //Optional 
-       minRating:1,    //Optional 
-       readOnly: true, //Optional 
-       callback: function(rating, index) {    //Mandatory 
-         $scope.ratingsCallback(rating, index);
-       }
-     };
- 
-     $scope.ratingsCallback = function(rating, index) {
-       console.log('Selected rating is : ', rating, ' and the index is : ', index);
-     };
-
-}])
 
 .controller('MyController', function($scope, $ionicModal) {
   

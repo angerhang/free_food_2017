@@ -6,29 +6,29 @@
                 
                 <h1 class="title"><img class="title-image" src="img/freefood_logo.png" width="123" height="30" style="margin-top: 5px" /></h1>
     </ion-header-bar>
-    <ion-content>
+
+    <ion-content class="bg-color-stable">
+        <p style="margin-top: 8px;">&nbsp;</p>
+        <ion-item class="text-center "> 
+            <center><img ng-src="img/user.jpg" align="middle" width="100px" height="100px"></center>
+    </ion-item>
+     
       <div class="list">
-         
-        
         <ion-list class="list-borderless">
-          <ion-item class="item-icon-right">
-            <h2 class="font-130">Joseph James, 32</h2>
-            <img ng-src="img/user.png" class="swiper-images" ng-click="hideProfile()">
-            <i class="icon ion-android-more-vertical color-red bold" ng-click="showActionSheet()"></i>
-          </ion-item>
-          <div ng-controller="RatingsCtrl">
-          <ionic-ratings ratingsobj='ratingsObject' index='0'></ionic-ratings>
-          </div>
-        <span>
-            <ion-item class="text-center color-blue">
-                    Apples challenge
-            </ion-item>
-      </span>
-      <span>
-        <ion-item class="text-center color-blue">
-                Health tip 1
+            <p style="margin-top: 8px;">&nbsp;</p>
+            <ion-item class="text-center color-red">
+                Joseph James, 32
         </ion-item>
-  </span>
+        <p style="margin-top: 8px;">&nbsp;</p>
+                <ion-item class="text-center color-red">
+                    Apples challenge
+                </ion-item>
+         
+                <p style="margin-top: 8px;">&nbsp;</p>
+        <ion-item class="text-center color-red">
+                Health tip: "Drink a lot of water!"
+        </ion-item>
+ 
         </ion-list>
        
       </div>

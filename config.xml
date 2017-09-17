@@ -32,4 +32,5 @@
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="my_project would like to use your location" />
     </plugin>
+    <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
 </widget>
