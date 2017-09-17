@@ -195,7 +195,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
       var mapOptions = {
         center: latLng,
-        zoom: 10,
+        zoom: 11,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
