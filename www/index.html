@@ -8,7 +8,8 @@
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-
+    <link href="https://rawgit.com/fraserxu/ionic-rating/master/ionic-rating.css" rel="stylesheet">
+    
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -16,8 +17,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
-    <script src="lib/ionic-ratings/dist/ionic-ratings.min.js"></script>
-
+    <script src="https://rawgit.com/fraserxu/ionic-rating/master/ionic-rating.min.js"></script>
 
     <!-- alternatively you can use the Google CDN -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script>
@@ -45,15 +45,16 @@
     <ion-pane>
 
       <ion-header-bar align-title="center" class="bar-positive">
-          <div ng-controller="MyController">
-        <button class="button button-grey" icon-start ng-click="openModal()"> + </button>
-      </div>
+        <div ng-controller="MyController">
+          <button class="button button-grey" icon-start ng-click="openModal()"> + </button>
+        </div>
+
         <h1 class="title"><img class="title-image" src="img/freefood_logo.png" width="123" height="30" style="margin-top: 5px" /></h1>
+        
         <div ng-controller="ProfileCtrl">
-            <button side="right">
-        <button class="button button-grey" icon-start ng-click="openModal()"> Profile </button>
-      </button>
-      </div>
+          <button class="button button-grey ion-ios-person" icon-start ng-click="openModal()">  </button>
+       </div>
+
       </ion-header-bar>
 
       <ion-nav-view></ion-nav-view>

@@ -7772,4 +7772,16 @@ a.button {
     background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
     background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
   }
-  
+  .item-profile{
+    width:250px;
+    height:250px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.rating-scale{
+  height:100px;
+}
+
+#health_tip { 
+  height: 100px;
+}

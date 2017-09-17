@@ -10,6 +10,5 @@
     "angular-sanitize": "1.4.3"
   },
   "dependencies": {
-    "ionic-ratings": "^0.3.0"
   }
 }

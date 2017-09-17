@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
+angular.module('starter', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform, GoogleMaps , CalculateRank) {
   $ionicPlatform.ready(function() {
@@ -34,8 +34,10 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
         $scope.modal.show();
      };
 
-     $scope.closeModal = function() {
+     $scope.closeModal = function(sername, event, location, duration, num_peope) {
         $scope.modal.hide();
+        console.log(username);
+        console.log(event);
      };
 
      //Cleanup the modal when we're done with it!
@@ -86,27 +88,6 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
           // Execute action
        });
     })
-
-    .controller('ControllerName', ['$scope', function($scope) {
-
-         $scope.ratingsObject = {
-           iconOn: 'ion-ios-star',    //Optional
-           iconOff: 'ion-ios-star-outline',   //Optional
-           iconOnColor: 'rgb(200, 200, 100)',  //Optional
-           iconOffColor:  'rgb(200, 100, 100)',    //Optional
-           rating:  2, //Optional
-           minRating:1,    //Optional
-           readOnly: true, //Optional
-           callback: function(rating, index) {    //Mandatory
-             $scope.ratingsCallback(rating, index);
-           }
-         };
-
-         $scope.ratingsCallback = function(rating, index) {
-           console.log('Selected rating is : ', rating, ' and the index is : ', index);
-         };
-
-   }])
 
 .controller('AddFoodCtrl', function($scope, $ionicPopup){
 	$scope.addFood = function(){
