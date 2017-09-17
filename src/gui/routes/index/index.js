@@ -98,11 +98,25 @@ export default class Index extends Component {
                         scoreLabels: response.labels
                     };
                 });
+
+              let publish = new XMLHttpRequest();
+              var input = {"file": this.state.imgData.name, "response": response};
+
+              publish.open("POST", "https://freefood-1bed5.firebaseio.com/outputData.json", true);
+              publish.setRequestHeader('Content-Type', 'application/json');
+              publish.send(JSON.stringify(input));
+
             } else {
                 console.error("file upload failed :(", xhr);
             }
         };
 
-        xhr.send(formData);
+     xhr.send(formData);
+
+
+
+
+
+
     }
 }

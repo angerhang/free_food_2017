@@ -39,7 +39,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
         let xhr = new XMLHttpRequest();
         var input = {"username": username, "location": location, "image": "das"};
-    
+
         xhr.open("POST", "https://freefood-1bed5.firebaseio.com/inputData.json", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(input
@@ -195,7 +195,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
       var mapOptions = {
         center: latLng,
-        zoom: 10,
+        zoom: 11,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
@@ -211,13 +211,25 @@ angular.module('starter', ['ionic', 'ngCordova'])
         var labels = obj.labels;
         console.log(name);
 
+        let test = new XMLHttpRequest();
+        let output;
+        test.onreadystatechange = function() {
+          if (test.readyState == XMLHttpRequest.DONE) {
+            let output = JSON.parse(test.response);
+            console.log(output);
+          }
+        }
+        test.open('GET', 'https://freefood-1bed5.firebaseio.com/outputData.json?orderBy="score"&limitToFirst=10', true);
+        test.send(null);
+
+
         var locations = [
-          ['Zurich HBF', 47.3768866,8.541694, 10, '2017-10-17 00-13:00', 7, "Zürich Hauptbahnhof is the largest railway station in Switzerland. Zürich is a major railway hub, with services to and from across Switzerland and neighbouring European countries such as Germany, Italy, Austria and France."],
+          ['Zurich HBF', 47.3768866,8.541694, 10, '2017-10-17 00-13:00', 10, "Zürich Hauptbahnhof is the largest railway station in Switzerland. Zürich is a major railway hub, with services to and from across Switzerland and neighbouring European countries such as Germany, Italy, Austria and France."],
           ['Zurich Technopark', 47.389161,8.5150677, 10, '2017-9-17 8:00-10:00', 5, "Technopark Zürich is a technopark based in the municipality of Zürich in the Canton of Zürich in Switzerland."],
-          ['Zurich Flughafen', 47.4582165,8.5554755, 30, '2017-9-19 18:00-19:00', 5, "Zürich Airport, also known as Kloten Airport, is the largest international airport of Switzerland and the principal hub of Swiss International Air Lines."],
+          ['Zurich Flughafen', 47.4582165,8.5554755, 30, '2017-9-19 18:00-19:00', 4, "Zürich Airport, also known as Kloten Airport, is the largest international airport of Switzerland and the principal hub of Swiss International Air Lines."],
           ['Zurich BachserMärt Forum', 47.382426,8.529462, 20, '2017-9-19 18:00-19:00', 9, "Food security and sovereignty, good and healthy food for all the people of the world, to achieve this needs a new understanding of food. We understand nutrition as common property and commons. A future food system is to be characterized by local, sustainable networks. The partners along the supply chain do not work profit-oriented, act in a participatory way and assume the equivalence of all parties involved. The local network is based on common cultural, ecological and social values. An open dialogical culture allows the integration of individual initiatives and works to balance the different interests of the actors along the food cycle."],
           ['FIFA World Football Museum', 47.362692, 8.531596, 10, '2017-9-20 18:00-19:00', 8, "The FIFA World Football Museum is an association football museum owned and operated by FIFA. The museum is located in Zürich, Switzerland, across town from the FIFA headquarters. It opened on 28 February 2016"],
-          ['Zürich Yoga For All', 47.362441, 8.550294, 10, '2017-9-19 15:00-19:00', 10, "'Yoga For All' aims to provide space and time for people to come together to enjoy yoga and other social activities. Everyone is welcome from yoga fanatics to those who are just curious. Yoga people are the friendlies."],          
+          ['Zürich Yoga For All', 47.362441, 8.550294, 10, '2017-9-19 15:00-19:00', 7, "'Yoga For All' aims to provide space and time for people to come together to enjoy yoga and other social activities. Everyone is welcome from yoga fanatics to those who are just curious. Yoga people are the friendlies."],
         ];
 
         var marker, i;
@@ -272,7 +284,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              infowindow.setContent(createWindowContent(locations[i][0], locations[i][4],  locations[i][3], locations[i][6], i, 
+              infowindow.setContent(createWindowContent(locations[i][0], locations[i][4],  locations[i][3], locations[i][6], i,
                                      locations[i][5]));
               infowindow.open(map, marker);
             }
