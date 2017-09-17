@@ -1,0 +1,38 @@
+<ion-modal-view>
+    
+    <ion-header-bar class="bar-positive">
+                <button class="button ion-android-arrow-down" 
+                ng-click = "closeModal()"> </button>
+                
+                <h1 class="title"><img class="title-image" src="img/freefood_logo.png" width="123" height="30" style="margin-top: 5px" /></h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+         
+        
+        <ion-list class="list-borderless">
+          <ion-item class="item-icon-right">
+            <h2 class="font-130">Joseph James, 32</h2>
+            <img ng-src="img/user.png" class="swiper-images" ng-click="hideProfile()">
+            <i class="icon ion-android-more-vertical color-red bold" ng-click="showActionSheet()"></i>
+          </ion-item>
+          <div ng-controller="RatingsCtrl">
+          <ionic-ratings ratingsobj='ratingsObject' index='0'></ionic-ratings>
+          </div>
+        <span>
+            <ion-item class="text-center color-blue">
+                    Apples challenge
+            </ion-item>
+      </span>
+      <span>
+        <ion-item class="text-center color-blue">
+                Health tip 1
+        </ion-item>
+  </span>
+        </ion-list>
+       
+      </div>
+      <p style="margin-top: 30px;">&nbsp;</p>
+    </ion-content>
+    
+  </ion-modal-view>
