@@ -1,3 +1,4 @@
+<!--
 <ion-modal-view>
     
     <ion-header-bar class="bar-positive">
@@ -37,3 +38,103 @@
     </ion-content>
     
   </ion-modal-view>
+
+-->
+
+<ion-modal-view>
+        
+        <ion-header-bar class="bar-positive">
+                    <button class="button ion-ios-arrow-down" 
+                    ng-click = "closeModal()"> </button>
+                    
+                    <h1 class="title"><img class="title-image" src="img/freefood_logo.png" 
+                          width="123" height="30" style="margin-top: 5px" /></h1>
+        </ion-header-bar>
+           
+  
+        <ion-pane>
+              <div class="bar bar-header bar-energized">
+                    <h1 class="title">First akk</h1>
+              </div>
+
+              <div class="bar bar-subheader bar-stable">
+                          <h1 class="title"> Personal info</h1>
+              </div>
+              <ion-content class="has-subheader">
+                    <form>
+                          <div class="list">
+                                <ion-list class="list-borderless">
+                                        <ion-item> 
+                                                <center><img class="item-profile" ng-src="img/user.jpg" align="middle"></center>
+                                        </ion-item>
+
+                                        <ion-item>
+                                                <center><img class="rating-scale" src="img/rating.png" align="middle"></center>
+                                        </ion-item>
+
+                                        <ion-item class="text-center color-red">
+                                            Sheldon Cooper, 37
+                                        </ion-item>
+                                           
+                                <label class = "item" id="health_tip">
+                                        <button class="button button-block button-calm">Health tip: "An apple a day makes the doctores away!</button>                                                                                   
+                                </label>
+                                <label class="item">
+                                            <button class="button button-block icon icon-left ion-arrow-up-a">Update profile</button>
+                                </label>
+                                <label class="item">
+                                      <button class="button button-block icon icon-left ion-minus-circled" ng-click = "closeModal()">Log out</button>
+                                </label>
+                          </div>
+                    </form>
+              </ion-content>
+
+        </ion-pane>
+</ion-modal-view>
+
+
+<!--
+    <h1 class="title"><img class="title-image" src="img/freefood_logo.png" width="123" height="30" style="margin-top: 5px" /></h1>
+            <img src="src="img/freefood_logo.png"">
+          <div class="bar bar-header bar-energized">
+                <h1 class="title">First akk</h1>
+          </div>
+
+          <div class="bar bar-subheader bar-stable">
+                      <h1 class="title">Personal Info</h1>
+          </div>
+          <ion-content class="has-subheader">
+                <form>
+                      <div class="list">
+                            <label class="item item-input">
+                                  <span class="input-label"></span>
+                                  <input type="text" placeholder="asdfas Everdeen">
+                            </label>
+                            <label class="item item-input">
+                                  <span class="input-label">Event name</span>
+                                  <input type="text" placeholder="HackZurich">                                          
+                            </label>
+                            <label class="item item-input">
+                                        <span class="input-label">Location</span>
+                                        <input type="text" placeholder="Zurich">                                          
+                            </label>
+                            <label class="item item-input">
+                                        <span class="input-label">Event duration</span>
+                                        <input type="text" placeholder="12:30 - 13:30">                                          
+                            </label>
+                            <label class="item item-input">
+                                        <span class="input-label">Food for how many people? </span>
+                                        <input type="text" placeholder="30 adults">                                          
+                            </label>
+                            <label class="item">
+                                        <button class="button button-block icon icon-left ion-arrow-up-a
+                                        button-calm">Upload Image</button>
+                            </label>
+                            <label class="item">
+                                  <button class="button button-block button-positive icon icon-left ion-home" ng-click = "closeModal()">Publish Event</button>
+                            </label>
+                      </div>
+                </form>
+          </ion-content>
+
+        -->
