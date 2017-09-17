@@ -22,11 +22,11 @@
                               <div class="list">
                                     <label class="item item-input">
                                           <span class="input-label">Organizer name</span>
-                                          <input type="text" placeholder="Katniss Everdeen">
+                                          <input type="text" ng-model="username" placeholder="Katniss Everdeen">
                                     </label>
                                     <label class="item item-input">
                                           <span class="input-label">Event name</span>
-                                          <input type="text" placeholder="HackZurich">                                          
+                                          <input type="text" ng-model="event" placeholder="HackZurich">                                          
                                     </label>
                                     <label class="item item-input">
                                                 <span class="input-label">Location</span>
@@ -45,7 +45,7 @@
                                                 button-calm">Upload Image</button>
                                     </label>
                                     <label class="item">
-                                          <button class="button button-block button-positive icon icon-left ion-home" ng-click = "closeModal()">Publish Event</button>
+                                          <button class="button button-block button-positive icon icon-left ion-home" ng-click = "closeModal(username, event)">Publish Event</button>
                                     </label>
                               </div>
                         </form>

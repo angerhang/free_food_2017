@@ -33,8 +33,10 @@ angular.module('starter', ['ionic', 'ngCordova'])
         $scope.modal.show();
      };
     
-     $scope.closeModal = function() {
+     $scope.closeModal = function(sername, event, location, duration, num_peope) {
         $scope.modal.hide();
+        console.log(username);
+        console.log(event);
      };
     
      //Cleanup the modal when we're done with it!
