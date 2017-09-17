@@ -198,6 +198,13 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
 
       //Wait until the map is loaded
       google.maps.event.addListenerOnce(map, 'idle', function(){
+        
+        var sampleStr =  '{"score":90,"labels":["natural foods","fruit"],"location":["Bondi Beach", -33.890542, 151.274856, 4]}';
+        var json = sampleStr, obj = JSON.parse(json);
+        var name = obj.score;
+        var location = obj.location;
+        var labels = obj.labels;
+        console.log(name);
 
         var locations = [
           ['Bondi Beach', -33.890542, 151.274856, 4],
