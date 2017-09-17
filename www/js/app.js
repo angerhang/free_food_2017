@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
 
-.run(function($ionicPlatform, GoogleMaps) {
+.run(function($ionicPlatform, GoogleMaps , CalculateRank) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,36 +17,37 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
     }
 
     GoogleMaps.init();
+    CalculateRank.calculate();
   })
 })
 
 .controller('MyController', function($scope, $ionicModal) {
-  
-     $ionicModal.fromTemplateUrl('templates/addFood.html', {
+
+     $ionicModal.fromTemplateUrl('templates/addFood.js', {
         scope: $scope,
         animation: 'slide-in-up',
      }).then(function(modal) {
         $scope.modal = modal;
      });
-    
+
      $scope.openModal = function() {
         $scope.modal.show();
      };
-    
+
      $scope.closeModal = function() {
         $scope.modal.hide();
      };
-    
+
      //Cleanup the modal when we're done with it!
      $scope.$on('$destroy', function() {
         $scope.modal.remove();
      });
-    
+
      // Execute action on hide modal
      $scope.$on('modal.hidden', function() {
-        // Execute action
+
      });
-    
+
      // Execute action on remove modal
      $scope.$on('modal.removed', function() {
         // Execute action
@@ -54,32 +55,32 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
   })
 
   .controller('ProfileCtrl', function($scope, $ionicModal) {
-    
+
        $ionicModal.fromTemplateUrl('templates/profile.html', {
           scope: $scope,
           animation: 'slide-in-up',
        }).then(function(modal) {
           $scope.modal = modal;
        });
-      
+
        $scope.openModal = function() {
           $scope.modal.show();
        };
-      
+
        $scope.closeModal = function() {
           $scope.modal.hide();
        };
-      
+
        //Cleanup the modal when we're done with it!
        $scope.$on('$destroy', function() {
           $scope.modal.remove();
        });
-      
+
        // Execute action on hide modal
        $scope.$on('modal.hidden', function() {
           // Execute action
        });
-      
+
        // Execute action on remove modal
        $scope.$on('modal.removed', function() {
           // Execute action
@@ -87,31 +88,31 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
     })
 
     .controller('ControllerName', ['$scope', function($scope) {
-      
+
          $scope.ratingsObject = {
-           iconOn: 'ion-ios-star',    //Optional 
-           iconOff: 'ion-ios-star-outline',   //Optional 
-           iconOnColor: 'rgb(200, 200, 100)',  //Optional 
-           iconOffColor:  'rgb(200, 100, 100)',    //Optional 
-           rating:  2, //Optional 
-           minRating:1,    //Optional 
-           readOnly: true, //Optional 
-           callback: function(rating, index) {    //Mandatory 
+           iconOn: 'ion-ios-star',    //Optional
+           iconOff: 'ion-ios-star-outline',   //Optional
+           iconOnColor: 'rgb(200, 200, 100)',  //Optional
+           iconOffColor:  'rgb(200, 100, 100)',    //Optional
+           rating:  2, //Optional
+           minRating:1,    //Optional
+           readOnly: true, //Optional
+           callback: function(rating, index) {    //Mandatory
              $scope.ratingsCallback(rating, index);
            }
          };
-     
+
          $scope.ratingsCallback = function(rating, index) {
            console.log('Selected rating is : ', rating, ' and the index is : ', index);
          };
-    
+
    }])
 
 .controller('AddFoodCtrl', function($scope, $ionicPopup){
 	$scope.addFood = function(){
 		var confirmPopup = $ionicPopup.confirm({
 			title: '',
-      templateUrl:'templates/addFood.html',
+      templateUrl:'templates/addFood.js',
 			button: [{
 			  text: 'Publish',
 			  type: 'button-block button-outline button-stable',
@@ -122,26 +123,26 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
 		});
 		confirmPopup.then(function(res){
 			if(res){
-				
+
 			}else{
-				
+
 			}
 		});
 	};
-  
-  // permissions 
+
+  // permissions
 	$scope.showAlert = function() {
 		var alertPopup = $ionicPopup.alert({
 			title: 'we would like yo access',
 			template: '<i class="ion-android-contacts"></i> Contact <br/> <i class="ion-android-locate"></i> Location',
 			okType: 'button-block button-outline button-stable',
-			
+
 		});
 		alertPopup.then(function(res) {
 			console.log(45);
 		});
 	};
-  
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -174,6 +175,24 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
 
 })
 
+.factory('CalculateRank', function($http){
+  return {
+
+    calculate: function()
+  {
+
+    this.firbasedata.labels=response.labels;
+    this.firbasedata.score=score;
+    this.firbasedata.location= location;
+
+    xhr.open("POST", "https://freefood-1bed5.firebaseio.com/frfooddata.json", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(this.firbasedata
+    ));
+  }
+}
+})
+
 .factory('GoogleMaps', function($cordovaGeolocation, $ionicLoading, $rootScope, $cordovaNetwork, Markers, ConnectivityMonitor){
 
   var markerCache = [];
@@ -198,7 +217,7 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
 
       //Wait until the map is loaded
       google.maps.event.addListenerOnce(map, 'idle', function(){
-        
+
         var sampleStr =  '{"score":90,"labels":["natural foods","fruit"],"location":["Bondi Beach", -33.890542, 151.274856, 4]}';
         var json = sampleStr, obj = JSON.parse(json);
         var name = obj.score;
@@ -246,20 +265,20 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
           });
 
           /*
-          title: event name 
+          title: event name
 
           */
           function createWindowContent(name, event, location, time, food) {
-            return '<div id="iw-container">' + 
+            return '<div id="iw-container">' +
             '<div class="iw-title">' + location  + '  Health Rating:' + '10' + ' </div>' +
             '<div class="iw-content">' +
               '<div class="iw-subTitle">Name</div>' + name +
               '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
               '<div class="iw-subTitle">Location</div>' + location +
-              '<p> asjdlfhalskdjf laksjdfklasjdf lkasjf alksjf jf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksj </p>' +              
+              '<p> asjdlfhalskdjf laksjdfklasjdf lkasjf alksjf jf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksj </p>' +
               '<p> Health rating </p>' +
               '<div class="iw-subTitle">Time</div>' + time +
-              '<div class="iw-subTitle">Time</div>' + food + 
+              '<div class="iw-subTitle">Time</div>' + food +
             '</div>' +
             '<div class="iw-bottom-gradient"></div>' +
             '</div>';
@@ -277,7 +296,7 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
               infowindow.open(map, marker);
             }
           })(marker, i));
-          
+
           /*
             * The google.maps.event.addListener() event waits for
             * the creation of the infowindow HTML structure 'domready'
@@ -285,19 +304,19 @@ angular.module('starter', ['ionic', 'ngCordova', , 'ionic-ratings'])
             * are applied.
             */
             google.maps.event.addListener(infowindow, 'domready', function() {
-              
+
                 // Reference to the DIV which receives the contents of the infowindow using jQuery
                 var iwOuter = $('.gm-style-iw');
-              
+
                 /* The DIV we want to change is above the .gm-style-iw DIV.
                   * So, we use jQuery and create a iwBackground variable,
                   * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
                   */
                 var iwBackground = iwOuter.prev();
-              
+
                 // Remove the background shadow DIV
                 iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-              
+
                 // Remove the white background DIV
                 iwBackground.children(':nth-child(4)').css({'display' : 'none'});
 

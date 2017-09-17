@@ -306,7 +306,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"preview_image":"preview_image__coelJ","scoreCircle":"scoreCircle__17y1r","load":"load__2ZbNJ"};
+module.exports = {"preview_image":"preview_image__rtUHl","scoreCircle":"scoreCircle__8D5Kd","load":"load__WODJZ"};
 
 /***/ }),
 
@@ -1081,10 +1081,6 @@ var Index = function (_Component) {
         _this.handleBtn = _this.handleBtn.bind(_this);
         _this.handleImage = _this.handleImage.bind(_this);
         _this.handleUpload = _this.handleUpload.bind(_this);
-        _this.scaleImage = _this.scaleImage.bind(_this);
-        _this.scaleCanvasWithAlgorithm = _this.scaleCanvasWithAlgorithm.bind(_this);
-        _this.getHalfScaleCanvas = _this.getHalfScaleCanvas.bind(_this);
-        _this.applyBilinearInterpolation = _this.applyBilinearInterpolation.bind(_this);
         _this.state = {
             imgData: null,
             previewImg: null,
@@ -1241,114 +1237,6 @@ var Index = function (_Component) {
         };
 
         xhr.send(formData);
-    };
-
-    Index.prototype.scaleImage = function scaleImage() {
-        var img = this.imgRef;
-
-        var canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-
-        while (canvas.width >= 2 * this.config.maxWidth) {
-            canvas = this.getHalfScaleCanvas(canvas);
-        }
-
-        if (canvas.width > this.config.maxWidth) {
-            canvas = this.scaleCanvasWithAlgorithm(canvas);
-        }
-
-        return canvas.toDataURL('image/jpeg', this.config.quality);
-    };
-
-    Index.prototype.scaleCanvasWithAlgorithm = function scaleCanvasWithAlgorithm(canvas) {
-        var scaledCanvas = document.createElement('canvas');
-
-        var scale = this.config.maxWidth / canvas.width;
-
-        scaledCanvas.width = canvas.width * scale;
-        scaledCanvas.height = canvas.height * scale;
-
-        var srcImgData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
-        var destImgData = scaledCanvas.getContext('2d').createImageData(scaledCanvas.width, scaledCanvas.height);
-
-        this.applyBilinearInterpolation(srcImgData, destImgData, scale);
-
-        scaledCanvas.getContext('2d').putImageData(destImgData, 0, 0);
-
-        return scaledCanvas;
-    };
-
-    Index.prototype.getHalfScaleCanvas = function getHalfScaleCanvas(canvas) {
-        var halfCanvas = document.createElement('canvas');
-        halfCanvas.width = canvas.width / 2;
-        halfCanvas.height = canvas.height / 2;
-
-        halfCanvas.getContext('2d').drawImage(canvas, 0, 0, halfCanvas.width, halfCanvas.height);
-
-        return halfCanvas;
-    };
-
-    Index.prototype.applyBilinearInterpolation = function applyBilinearInterpolation(srcCanvasData, destCanvasData, scale) {
-        function inner(f00, f10, f01, f11, x, y) {
-            var un_x = 1.0 - x;
-            var un_y = 1.0 - y;
-            return f00 * un_x * un_y + f10 * x * un_y + f01 * un_x * y + f11 * x * y;
-        }
-
-        var i = void 0,
-            j = void 0;
-        var iyv = void 0,
-            iy0 = void 0,
-            iy1 = void 0,
-            ixv = void 0,
-            ix0 = void 0,
-            ix1 = void 0;
-        var idxD = void 0,
-            idxS00 = void 0,
-            idxS10 = void 0,
-            idxS01 = void 0,
-            idxS11 = void 0;
-        var dx = void 0,
-            dy = void 0;
-        var r = void 0,
-            g = void 0,
-            b = void 0,
-            a = void 0;
-        for (i = 0; i < destCanvasData.height; ++i) {
-            iyv = i / scale;
-            iy0 = Math.floor(iyv);
-            // Math.ceil can go over bounds
-            iy1 = Math.ceil(iyv) > srcCanvasData.height - 1 ? srcCanvasData.height - 1 : Math.ceil(iyv);
-            for (j = 0; j < destCanvasData.width; ++j) {
-                ixv = j / scale;
-                ix0 = Math.floor(ixv);
-                // Math.ceil can go over bounds
-                ix1 = Math.ceil(ixv) > srcCanvasData.width - 1 ? srcCanvasData.width - 1 : Math.ceil(ixv);
-                idxD = (j + destCanvasData.width * i) * 4;
-                // matrix to vector indices
-                idxS00 = (ix0 + srcCanvasData.width * iy0) * 4;
-                idxS10 = (ix1 + srcCanvasData.width * iy0) * 4;
-                idxS01 = (ix0 + srcCanvasData.width * iy1) * 4;
-                idxS11 = (ix1 + srcCanvasData.width * iy1) * 4;
-                // overall coordinates to unit square
-                dx = ixv - ix0;
-                dy = iyv - iy0;
-                // I let the r, g, b, a on purpose for debugging
-                r = inner(srcCanvasData.data[idxS00], srcCanvasData.data[idxS10], srcCanvasData.data[idxS01], srcCanvasData.data[idxS11], dx, dy);
-                destCanvasData.data[idxD] = r;
-
-                g = inner(srcCanvasData.data[idxS00 + 1], srcCanvasData.data[idxS10 + 1], srcCanvasData.data[idxS01 + 1], srcCanvasData.data[idxS11 + 1], dx, dy);
-                destCanvasData.data[idxD + 1] = g;
-
-                b = inner(srcCanvasData.data[idxS00 + 2], srcCanvasData.data[idxS10 + 2], srcCanvasData.data[idxS01 + 2], srcCanvasData.data[idxS11 + 2], dx, dy);
-                destCanvasData.data[idxD + 2] = b;
-
-                a = inner(srcCanvasData.data[idxS00 + 3], srcCanvasData.data[idxS10 + 3], srcCanvasData.data[idxS01 + 3], srcCanvasData.data[idxS11 + 3], dx, dy);
-                destCanvasData.data[idxD + 3] = a;
-            }
-        }
     };
 
     return Index;
