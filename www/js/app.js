@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
 .controller('MyController', function($scope, $ionicModal) {
 
-     $ionicModal.fromTemplateUrl('templates/addFood.js', {
+     $ionicModal.fromTemplateUrl('templates/addFood.html', {
         scope: $scope,
         animation: 'slide-in-up',
      }).then(function(modal) {
@@ -36,7 +36,14 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
      $scope.closeModal = function(username, event, location, duration, num_peope) {
         $scope.modal.hide();
-        console.log(event);
+
+        let xhr = new XMLHttpRequest();
+        var input = {"username": username, "location": location, "image": "das"};
+    
+        xhr.open("POST", "https://freefood-1bed5.firebaseio.com/inputData.json", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(input
+        ));
 
      };
 

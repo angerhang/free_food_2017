@@ -1,5 +1,4 @@
-<ion-modal-view>
-            
+<ion-modal-view>        
             <ion-header-bar class="bar-positive">
                         <button class="button ion-ios-arrow-down" 
                         ng-click = "closeModal()"> </button>
@@ -30,22 +29,23 @@
                                     </label>
                                     <label class="item item-input">
                                                 <span class="input-label">Location</span>
-                                                <input type="text" placeholder="Zurich">                                          
+                                                <input type="text" ng-model="location" placeholder="Zurich">                                          
                                     </label>
                                     <label class="item item-input">
                                                 <span class="input-label">Event duration</span>
-                                                <input type="text" placeholder="12:30 - 13:30">                                          
+                                                <input type="text" ng-model="duration" placeholder="12:30 - 13:30">                                          
                                     </label>
                                     <label class="item item-input">
                                                 <span class="input-label">Food for how many people? </span>
-                                                <input type="text" placeholder="30 adults">                                          
+                                                <input type="text" ng-model="num_peope" placeholder="30 adults">                                          
                                     </label>
                                     <label class="item">
                                                 <button class="button button-block icon icon-left ion-arrow-up-a
                                                 button-calm">Upload Image</button>
                                     </label>
                                     <label class="item">
-                                          <button class="button button-block button-positive icon icon-left ion-home" ng-click = "closeModal(username, event)">Publish Event</button>
+                                          <button class="button button-block button-positive icon icon-left ion-home"
+                                           ng-click = "closeModal(username, event, location, duration, num_peope)">Publish Event</button>
                                     </label>
                               </div>
                         </form>
