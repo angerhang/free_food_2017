@@ -256,15 +256,14 @@ angular.module('starter', ['ionic', 'ngCordova'])
           */
           function createWindowContent(name, event, location, time, food) {
             return '<div id="iw-container">' +
-            '<div class="iw-title">' + location  + '  Health Rating:' + '10' + ' </div>' +
+            '<div class="iw-title">'  + '  Health Rating:' + '10' + ' </div>' +
             '<div class="iw-content">' +
               '<div class="iw-subTitle">Name</div>' + name +
-              '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
               '<div class="iw-subTitle">Location</div>' + location +
-              '<p> asjdlfhalskdjf laksjdfklasjdf lkasjf alksjf jf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksjjf laksjdfklasjdf lkasjf alksj </p>' +
-              '<p> Health rating </p>' +
+              '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+              '<p>HackZurich is Europe’s largest and most renowned Hackathon and unites 550 tech talents from over 50 countries to create a web, mobile, or desktop application within 40 hours.</p>' +
               '<div class="iw-subTitle">Time</div>' + time +
-              '<div class="iw-subTitle">Time</div>' + food +
+              '<div class="iw-subTitle">Food portions left</div>' + food +
             '</div>' +
             '<div class="iw-bottom-gradient"></div>' +
             '</div>';
