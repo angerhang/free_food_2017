@@ -267,7 +267,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
             '<div class="iw-title">'  + '  Health Rating:' + happy + ' </div>' +
             '<div class="iw-content">' +
               '<div class="iw-subTitle">' + event + '</div>' +
-              '<img src="../img/location' + i + '.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+              '<img src="../img/location' + i + '.jpg" alt="Porcelain Factory of Vista Alegre" height="180" width="170">' +
               '<p> ' +  desp + "</p>" +
               '<div class="iw-subTitle">Time </div> ' + time + '\n' +
               '<div class="iw-subTitle">Food portions left ' + food + '</div>' +
